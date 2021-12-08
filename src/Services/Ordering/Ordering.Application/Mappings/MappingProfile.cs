@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Ordering.Application.Features.Queries.GetOrdersList;
+using Ordering.Application.Features.Orders.Queries.GetOrdersList;
 using Ordering.Domain.Entities;
 using System;
 using System.Collections.Generic;
