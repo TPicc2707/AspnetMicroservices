@@ -35,7 +35,7 @@ namespace Ordering.API.Controllers
         //testing purpose
         [HttpPost(Name = "CheckoutOrder")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<int>> CheckOrder([FromBody] CheckoutOrderCommand command)
+        public async Task<ActionResult<int>> CheckoutOrder([FromBody] CheckoutOrderCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
@@ -45,7 +45,7 @@ namespace Ordering.API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> CheckOrder([FromBody] UpdateOrderCommand command)
+        public async Task<ActionResult>UpdateOrder([FromBody] UpdateOrderCommand command)
         {
             await _mediator.Send(command);
             return NoContent();
