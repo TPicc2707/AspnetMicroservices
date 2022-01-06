@@ -25,7 +25,7 @@ namespace AspnetRunBasics.Services
 
         public async Task<BasketModel> UpdateBasket(BasketModel model)
         {
-            var response = await _client.PutAsJson($"/Basket", model);
+            var response = await _client.PostAsJson($"/Basket", model);
             if (response.IsSuccessStatusCode)
                 return await response.ReadContentAs<BasketModel>();
             else
