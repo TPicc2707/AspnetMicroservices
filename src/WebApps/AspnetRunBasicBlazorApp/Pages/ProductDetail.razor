@@ -1,0 +1,62 @@
+﻿@page "/Product/{productId}"
+@inject ICatalogService CatalogService
+@inject IBasketService BasketService
+@inject NavigationManager NavigationManager
+
+@code {
+    [Parameter]
+    public string ProductId { get; set; }
+
+    public CatalogModel Product { get; set; }
+
+    public int Quantity { get; set; }
+
+    public string Color { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrEmpty(ProductId))
+        {
+            Product = new CatalogModel();
+        }
+        else
+        {
+            Quantity = 1;
+            Product = await CatalogService.GetCatalog(ProductId);
+        }
+    }
+
+    public void QuantityMinus()
+    {
+        if(Quantity > 1)
+        {
+            Quantity = Quantity - 1;
+        }
+    }
+
+    public void QuantityPlus()
+    {
+        Quantity = Quantity + 1;
+    }
+
+    public async Task AddToCart()
+    {
+        var product = await CatalogService.GetCatalog(ProductId);
+
+        var userName = "swn";
+        var basket = await BasketService.GetBasket(userName);
+
+        basket.Items.Add(new BasketItemModel
+        {
+            ProductId = product.Id,
+            ProductName = product.Name,
+            Price = product.Price,
+            Quantity = Quantity,
+            Color = Color
+        });
+
+        var basketUpdated = await BasketService.UpdateBasket(basket);
+
+        NavigationManager.NavigateTo("Cart");
+    }
+}
