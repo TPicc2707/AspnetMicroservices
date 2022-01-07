@@ -24,14 +24,16 @@
             <div class="card bg-light mb-3">
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                 <ul class="list-group category_block">
-
-                    @foreach (var category in CategoryList)
+                    @if(CategoryList != null && CategoryList.Count() > 0)
                     {
-                        <li class="list-group-item">
-                            <NavLink href="@($"/Product?categoryName={category}")">
-                                @category
-                            </NavLink>
-                        </li>
+                        @foreach (var category in CategoryList)
+                        {
+                            <li class="list-group-item">
+                                <NavLink href="@($"/Product?categoryName={category}")">
+                                    @category
+                                </NavLink>
+                            </li>
+                        }
                     }
 
                 </ul>
@@ -51,14 +53,15 @@
 
         <div class="col">
             <div class="row">
-                
-                    @foreach (var product in ProductList)
+                    @if(ProductList != null && ProductList.Count() > 0) 
                     {
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <_ProductItemPartial Model="@product" />
-                        </div>
+                        @foreach (var product in ProductList)
+                        {
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <_ProductItemPartial Model="@product" />
+                            </div>
+                        }
                     }
-
                     <div class="col-12">
                         <nav aria-label="...">
                             <ul class="pagination">
