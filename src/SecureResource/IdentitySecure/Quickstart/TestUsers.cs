@@ -59,9 +59,11 @@ namespace IdentitySecure.Quickstart
                             new Claim(JwtClaimTypes.Address, JsonSerializer.Serialize(address), IdentityServerConstants.ClaimValueTypes.Json),
                             new Claim(JwtClaimTypes.Role, "admin")
 
+                        }
                     }
-                }
+                };
             }
         }
     }
 }
+
