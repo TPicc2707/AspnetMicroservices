@@ -1,0 +1,1 @@
+﻿window.location.href = document.querySelect("meta[http-equiv=refresh]").getAttribute("data-url");
